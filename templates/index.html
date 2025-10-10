@@ -1,0 +1,154 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeliverGraph AI - Delivery Price Calculator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🚚 DeliverGraph AI</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/docs" target="_blank">API Docs</a>
+            </nav>
+        </header>
+
+        <main class="calculator-section">
+            <div class="hero">
+                <h1>Calculate Your Delivery Price</h1>
+                <p>Get instant pricing for your delivery needs</p>
+            </div>
+
+            <div class="calculator-container">
+                <form id="deliveryForm">
+                    <div class="form-grid">
+                        <!-- User Information -->
+                        <div class="form-group">
+                            <label for="user_id">User ID *</label>
+                            <input type="text" id="user_id" name="user_id" required placeholder="e.g., john-doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_email">Email (Optional)</label>
+                            <input type="email" id="user_email" name="user_email" placeholder="your@email.com">
+                        </div>
+
+                        <!-- Delivery Details -->
+                        <div class="form-group">
+                            <label for="material_type">Material Type *</label>
+                            <select id="material_type" name="material_type" required>
+                                <option value="">Select Material</option>
+                                <option value="standard">Standard</option>
+                                <option value="fragile">Fragile</option>
+                                <option value="perishable">Perishable</option>
+                                <option value="heavy">Heavy</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="distance">Distance (km) *</label>
+                            <input type="number" id="distance" name="distance" required min="0.1" step="0.1" placeholder="e.g., 12.5">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="urgency">Urgency *</label>
+                            <select id="urgency" name="urgency" required>
+                                <option value="">Select Urgency</option>
+                                <option value="standard">Standard (1x)</option>
+                                <option value="express">Express (1.5x)</option>
+                                <option value="same_day">Same Day (2x)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">Weight (kg) *</label>
+                            <input type="number" id="weight" name="weight" required min="0.1" step="0.1" placeholder="e.g., 5.0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location_type">Location Type *</label>
+                            <select id="location_type" name="location_type" required>
+                                <option value="">Select Location</option>
+                                <option value="urban">Urban</option>
+                                <option value="suburban">Suburban</option>
+                                <option value="rural">Rural</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        Calculate Price
+                    </button>
+                </form>
+
+                <!-- Loading Spinner -->
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Calculating your delivery price...</p>
+                </div>
+
+                <!-- Results Section -->
+                <div id="results" class="results hidden">
+                    <div class="result-header">
+                        <h2>Your Delivery Quote</h2>
+                        <span class="ticket-id" id="ticketId"></span>
+                    </div>
+
+                    <div class="price-display">
+                        <div class="price-label">Total Price</div>
+                        <div class="price-value" id="totalPrice">₹0.00</div>
+                    </div>
+
+                    <div class="breakdown">
+                        <h3>Price Breakdown</h3>
+                        <div class="breakdown-item">
+                            <span>Base Price:</span>
+                            <span id="basePrice">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Urgency Multiplier:</span>
+                            <span id="urgencyMult">1.0x</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Weight Surcharge:</span>
+                            <span id="weightSurcharge">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Location Adjustment:</span>
+                            <span id="locationAdj">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="action-log">
+                        <h3>Processing Details</h3>
+                        <ul id="actionLog"></ul>
+                    </div>
+
+                    <div class="result-actions">
+                        <button onclick="viewDetails()" class="btn-secondary">View Full Details</button>
+                        <button onclick="resetForm()" class="btn-primary">Calculate Another</button>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error" class="error hidden">
+                    <h3>⚠️ Error</h3>
+                    <p id="errorMessage"></p>
+                    <button onclick="hideError()" class="btn-secondary">Try Again</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 DeliverGraph AI - Powered by LangGraph</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

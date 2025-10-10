@@ -1,0 +1,122 @@
+<!-- templates/details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Details - DeliverGraph AI</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🚚 DeliverGraph AI</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/docs" target="_blank">API Docs</a>
+            </nav>
+        </header>
+
+        <main class="details-section">
+            <div class="breadcrumb">
+                <a href="/dashboard">← Back to Dashboard</a>
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading delivery details...</p>
+            </div>
+
+            <div id="detailsContainer" class="hidden">
+                <div class="details-header">
+                    <h1>Delivery Details</h1>
+                    <span class="status-badge" id="statusBadge">Pending</span>
+                </div>
+
+                <div class="details-grid">
+                    <!-- Ticket Information -->
+                    <div class="detail-card">
+                        <h3>📋 Ticket Information</h3>
+                        <div class="detail-row">
+                            <span class="label">Ticket ID:</span>
+                            <span class="value" id="ticketId">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">User ID:</span>
+                            <span class="value" id="userId">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Created:</span>
+                            <span class="value" id="createdAt">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Details -->
+                    <div class="detail-card">
+                        <h3>📦 Delivery Specifications</h3>
+                        <div class="detail-row">
+                            <span class="label">Material Type:</span>
+                            <span class="value" id="materialType">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Distance:</span>
+                            <span class="value" id="distance">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Urgency:</span>
+                            <span class="value" id="urgency">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Weight:</span>
+                            <span class="value" id="weight">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Location:</span>
+                            <span class="value" id="locationType">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Price Information -->
+                    <div class="detail-card price-card">
+                        <h3>💰 Price Information</h3>
+                        <div class="total-price">
+                            <span>Total Price:</span>
+                            <span class="price" id="totalPrice">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Processing Log -->
+                    <div class="detail-card full-width">
+                        <h3>🔄 Processing Log</h3>
+                        <div class="log-container" id="actionLog">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-actions">
+                    <button onclick="window.print()" class="btn-secondary">🖨️ Print</button>
+                    <button onclick="downloadPDF()" class="btn-secondary">📄 Download PDF</button>
+                    <a href="/dashboard" class="btn-primary">Back to Dashboard</a>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden">
+                <h3>⚠️ Delivery Not Found</h3>
+                <p id="errorMessage">The requested delivery could not be found.</p>
+                <a href="/dashboard" class="btn-primary">Go to Dashboard</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 DeliverGraph AI - Powered by LangGraph</p>
+        </footer>
+    </div>
+
+    <script>
+        const ticketId = "{{ ticket_id }}";
+    </script>
+    <script src="/static/js/details.js"></script>
+</body>
+</html>

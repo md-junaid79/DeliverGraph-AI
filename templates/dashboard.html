@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Dashboard - DeliverGraph AI</title> <link rel="stylesheet" href="/static/css/style.css">
+
+</head> <body> <div class="container"> <header> <div class="logo">🚚 DeliverGraph AI</div> <nav> <a href="/">Home</a> <a href="/dashboard" class="active">Dashboard</a> <a href="/docs" target="_blank">API Docs</a> </nav> </header>
+    <main class="dashboard-section">
+        <div class="dashboard-header">
+            <h1>Delivery Dashboard</h1>
+            <button onclick="refreshDeliveries()" class="btn-secondary">
+                🔄 Refresh
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-info">
+                    <h3 id="totalDeliveries">0</h3>
+                    <p>Total Deliveries</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <h3 id="completedDeliveries">0</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3 id="totalRevenue">₹0</h3>
+                    <p>Total Revenue</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <h3 id="avgPrice">₹0</h3>
+                    <p>Avg. Price</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deliveries Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Recent Deliveries</h2>
+                <input type="text" id="searchInput" placeholder="Search by ticket ID or user..." 
+                       onkeyup="filterTable()">
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading deliveries...</p>
+            </div>
+
+            <table id="deliveriesTable" class="hidden">
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>User ID</th>
+                        <th>Material</th>
+                        <th>Distance (km)</th>
+                        <th>Price (₹)</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="deliveriesBody">
+                    <!-- Dynamic content -->
+                </tbody>
+            </table>
+
+            <div id="noData" class="no-data hidden">
+                <p>📭 No deliveries found</p>
+                <a href="/" class="btn-primary">Create First Delivery</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 DeliverGraph AI - Powered by LangGraph</p>
+    </footer>
+</div>
+
+<script src="/static/js/dashboard.js"></script></body> </html>
