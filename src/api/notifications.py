@@ -1,6 +1,8 @@
 # src/api/notifications.py
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from dotenv import load_dotenv
+load_dotenv()
 import os
 
 class NotificationService:
@@ -10,7 +12,7 @@ class NotificationService:
         if os.getenv('SENDGRID_API_KEY'):
             try:
                 self.sendgrid_client = SendGridAPIClient(os.getenv('SENDGRID_API_KEY'))
-                self.from_email = os.getenv('SENDGRID_FROM_EMAIL', 'noreply@delivergraph.ai')
+                self.from_email = os.getenv('SENDGRID_FROM_EMAIL', '22831a6679@gniindia.org')
             except Exception as e:
                 print(f"⚠️ SendGrid initialization failed: {e}")
     
