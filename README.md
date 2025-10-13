@@ -96,7 +96,9 @@ These nodes are wired in `src/workflow.py` with error-branching that routes to `
 ---
 
 ## 🔁 Workflow flow (step-by-step)
-
+<p align="center">
+  <img src="images\WORKFLOW PROCESS - visual selection.png" alt="WORKFLOW FLOW" width="550"/>
+</p>
 High-level flow (as implemented in `src/workflow.py`):
 
 1. Input Node — validate incoming payload, create `ticket_id`, initialize `action_log = []` 🔹
@@ -114,18 +116,15 @@ Error path: any node may set `state['error_message']` and the workflow will rout
 ---
 
 ## 🗂️ Outputs & images
+- landing_page:
+<img src = "images\landing_page.png">
+- user input:
+<img src = "images\user_input.png">
+- calculated delivery price:
+<img src = "images\calculated_price.png">
+- delivery dashboard UI:
+<img src = "images\delivery_dashboard.png">
 
-- Generated artifacts (action traces, screenshots, example images) are stored under the `static/images/` and `outputs/` folders when produced. Add example images to `outputs/images/` for demo purposes.
-
-- Recommended layout:
-  - `outputs/images/` — generated visuals (e.g., pricing breakdown charts, map snapshots)
-  - `outputs/traces/` — JSON traces or workflow run logs
-
-- Example links (relative):
-  - ./static/images/ — (UI images & icons used by the frontend)
-  - ./outputs/images/ — (place to store generated outputs for demos)
-
-If you run the workflow and want to save visual artifacts, write them into `outputs/images/` and link them from the templates or README for easy demoing.
 
 ---
 
